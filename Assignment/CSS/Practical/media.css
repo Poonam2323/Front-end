@@ -1,0 +1,31 @@
+@media (max-width: 768px) {
+        body {
+          font-size: 18px;
+        }
+        .nav {
+          flex-direction: column;
+          margin-top: 0.5rem;
+        }
+        .nav a {
+          font-size: 1.2rem;
+          padding: 0.5rem 0;
+        }
+        .main-content {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+          margin: 1rem auto;
+        }
+        .left-col,
+        .right-col {
+          padding: 1rem;
+        }
+        .footer-grid {
+          flex-direction: column;
+          text-align: center;
+          align-items: center;
+        }
+        .footer-bottom {
+          font-size: 1rem;
+        }
+      }
+    

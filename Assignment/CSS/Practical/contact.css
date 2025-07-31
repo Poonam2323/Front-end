@@ -1,0 +1,31 @@
+table {
+        border: 2px solid;
+        background-color: rgba(124, 165, 215, 0.693);
+        padding: 60px;
+        margin: 0 auto;
+        }
+
+label {
+    margin-right: 7px;
+}
+
+td {
+    padding: 5px;
+}
+
+input {
+    padding: 7px;
+}
+ 
+ 
+.submit {
+    padding: 14px 27px;
+    background-color:rgb(32, 35, 110);
+    color: white;
+    margin-top: 50px;
+}
+
+.submit:hover {
+    background-color: black;
+}
+

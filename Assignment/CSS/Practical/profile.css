@@ -1,0 +1,61 @@
+ body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .card {
+      box-sizing: border‑box;
+      width: 300px;
+      border: 2px solid #333;
+      padding: 20px;
+      background: #fff;
+      text-align: center;
+      margin: 10px;
+    }
+    .profile-pic {
+      box-sizing: content‑box;
+      width: 200px;
+      height: 200px;
+      padding: 5px;
+      border: 3px solid #666;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 15px;
+    }
+    .profile-pic img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .name {
+      margin: 0 0 8px;
+      font-size: 1.4em;
+      font-weight: bold;
+      color: #222;
+    }
+    .bio {
+      margin: 0 0 15px;
+      font-size: 1em;
+      color: #555;
+    }
+    .follow-btn {
+      box-sizing: border‑box;
+      display: inline-block;
+      width: 50%;
+      padding: 10px;
+      border: 2px solid #c36ec9;
+      background-color: #c072ce;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .follow-btn:hover {
+      background-color: #7fa6d0;
+      border-color: #bc70df;
+    }
