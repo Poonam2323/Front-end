@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class A {
+            a() {
+                console.log("class A");
+            }
+        }
+
+        class B extends A {
+            b() {
+                console.log("class B");
+            }
+        }
+
+        class c extends A {
+            c() {
+                console.log("class c")
+            }
+        }
+
+        let Data = new B();
+        console.log(Data);
+        Data.a();
+        Data.b();
+        
+        let Data = new c();
+        console.log(Data1);
+        Data.a();
+        Data.c();
+
+    </script>
+    </body>
+    </html>
