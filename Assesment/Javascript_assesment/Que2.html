@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Feedback Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+    form {
+      max-width: 400px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px;
+      width: 100%;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .error {
+      color: red;
+      font-size: 0.9em;
+    }
+    .success {
+      color: green;
+      font-size: 1em;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Feedback Form</h2>
+  <form id="feedbackForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+    <div class="error" id="nameError"></div>
+
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email">
+    <div class="error" id="emailError"></div>
+
+    <label for="event">Event:</label>
+    <select id="event" name="event">
+      <option value="">--Select--</option>
+      <option value="workshop">Workshop</option>
+      <option value="seminar">Seminar</option>
+      <option value="webinar">Webinar</option>
+    </select>
+    <div class="error" id="eventError"></div>
+
+    <label for="rating">Rating (1-5):</label>
+    <input type="number" id="rating" name="rating" min="1" max="5">
+    <div class="error" id="ratingError"></div>
+
+    <label for="comments">Comments:</label>
+    <textarea id="comments" name="comments"></textarea>
+    <div class="error" id="commentsError"></div>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="message"></div>
+
+  <script>
+    class FeedbackFormHandler {
+      constructor(formId) {
+        this.form = document.getElementById(formId);
+        this.messageBox = document.getElementById("message");
+
+        // Event delegation
+        this.form.addEventListener("input", (e) => this.validateField(e.target));
+        this.form.addEventListener("blur", (e) => this.validateField(e.target), true);
+        this.form.addEventListener("submit", (e) => this.handleSubmit(e));
+      }
+
+      validateField(field) {
+        let valid = true;
+        let error = "";
+
+        if (field.id === "name") {
+          if (field.value.trim().length < 3) {
+            valid = false;
+            error = "Name must be at least 3 characters.";
+          }
+          document.getElementById("nameError").textContent = error;
+        }
+
+        if (field.id === "email") {
+          const regex = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+          if (!regex.test(field.value.trim())) {
+            valid = false;
+            error = "Enter a valid email address.";
+          }
+          document.getElementById("emailError").textContent = error;
+        }
+
+        if (field.id === "event") {
+          if (field.value === "") {
+            valid = false;
+            error = "Please select an event.";
+          }
+          document.getElementById("eventError").textContent = error;
+        }
+
+        if (field.id === "rating") {
+          const rating = parseInt(field.value);
+          if (isNaN(rating) || rating < 1 || rating > 5) {
+            valid = false;
+            error = "Rating must be between 1 and 5.";
+          }
+          document.getElementById("ratingError").textContent = error;
+        }
+
+        if (field.id === "comments") {
+          if (field.value.trim().length < 10) {
+            valid = false;
+            error = "Comments must be at least 10 characters.";
+          }
+          document.getElementById("commentsError").textContent = error;
+        }
+
+        return valid;
+      }
+
+      validateForm() {
+        let isValid = true;
+        const fields = ["name", "email", "event", "rating", "comments"];
+        fields.forEach(id => {
+          const field = document.getElementById(id);
+          if (!this.validateField(field)) {
+            isValid = false;
+          }
+        });
+        return isValid;
+      }
+
+      saveToLocalStorage(data) {
+        let feedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
+        feedbacks.push(data);
+        localStorage.setItem("feedbacks", JSON.stringify(feedbacks));
+      }
+
+      clearForm() {
+        this.form.reset();
+        ["nameError", "emailError", "eventError", "ratingError", "commentsError"]
+          .forEach(id => document.getElementById(id).textContent = "");
+      }
+
+      showMessage(msg, type) {
+        this.messageBox.textContent = msg;
+        this.messageBox.className = type;
+        setTimeout(() => {
+          this.messageBox.textContent = "";
+        }, 3000);
+      }
+
+      handleSubmit(e) {
+        e.preventDefault();
+        if (this.validateForm()) {
+          const data = {
+            name: document.getElementById("name").value.trim(),
+            email: document.getElementById("email").value.trim(),
+            event: document.getElementById("event").value,
+            rating: document.getElementById("rating").value,
+            comments: document.getElementById("comments").value.trim(),
+          };
+          this.saveToLocalStorage(data);
+          this.clearForm();
+          this.showMessage("Feedback submitted successfully!", "success");
+        } else {
+          this.showMessage("Please correct the errors in the form.", "error");
+        }
+      }
+    }
+
+    // Initialize form handler
+    new FeedbackFormHandler("feedbackForm");
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+    <meta  charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css effect</title>
+    <style>
+        .main {
+            margin: 50px auto;
+            width: 500px;
+            height: 300px;
+            background-image: url(https://p.w3layouts.com/demos_new/template_demo/20-06-2017/elite_shoppy-demo_Free/1660570665/web/images/bot_1.jpg);
+            position: relative;
+            overflow: hidden;
+
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 35px;
+            letter-spacing: 15px;
+            text-align: center;
+            line-height: 400px;
+        }
+
+        span {
+            color: aquamarine;
+        }
+
+         .right {
+            position: absolute;
+            width: 500px;
+            height: 300px;
+            background-color: rgba(0,0,0,0.4);
+            right: -100%;
+            top: -100%;
+            transition: 3s;
+
+         }
+
+
+          .left {
+            position: absolute;
+            width: 500px;
+            height: 300px;
+            background-color: rgba(0,0,0,0.4);
+            left:-100%;
+            bottom: -100%;
+            transition: 3s;
+          }
+
+          .main:hover .right {
+            right: 0;
+            top: 0;
+          }
+
+          .main:hover .left {
+            left: 0;
+            bottom: 0;
+          }
+
+        
+    </style>
+    </head>
+        <body>
+        <div class="main">
+            <h2>Flat <span>50%</span>OFF</h2>
+            <div class="right"></div>
+            <div class="left"></div>
+        </div>
+    </body>
+
+
+       

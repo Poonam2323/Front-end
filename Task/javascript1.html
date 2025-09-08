@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Data Types</title>
+</head>
+<body>
+  <h1>Check Console for Output</h1>
+
+  <script>
+    // Declare variables with different data types
+    var name = "Alice";           // string
+    var age = 25;                 // number
+    var isStudent = true;         // boolean
+    var middleName = null;        // null
+    var address;                  // undefined
+
+    // Log values and their types
+    console.log("Value:", name, "| Type:", typeof name);
+    console.log("Value:", age, "| Type:", typeof age);
+    console.log("Value:", isStudent, "| Type:", typeof isStudent);
+    console.log("Value:", middleName, "| Type:", typeof middleName);  // returns "object" (quirk in JS)
+    console.log("Value:", address, "| Type:", typeof address);
+  </script>
+</body>
+</html>

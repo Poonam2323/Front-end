@@ -1,0 +1,343 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.container {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.header {
+  /* position: relative; */
+  background: #6888b1;
+
+  padding: 20px 40px;
+  /* overflow: hidden; */
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* text-decoration: none; */
+}
+
+.menu {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  font-size: 25px;
+
+  /* text-decoration: none; */
+}
+
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.header-text {
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: 200;
+  text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  padding-top: 10px;
+}
+
+.header-text h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+}
+
+.header-text p {
+  font-size: 15px;
+  padding-bottom: 20px;
+}
+
+.popular-menu {
+  background-color: #e0edc1;
+}
+
+.popular-menu h2 {
+  font-size: 28px;
+  color: #565656;
+  font-weight: 700;
+  font-family: "Ubuntu";
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 25px;
+}
+
+.popular-menu .row {
+  /* width: 33.33%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 25px;
+  flex-wrap: wrap;
+  padding-top: 25px;
+}
+
+.card-content p {
+  width: 70%;
+}
+
+.card-content {
+  background: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  padding-top: 0;
+}
+
+.popular-menu .col {
+  background-color: #fff;
+}
+
+.show-more {
+  margin: 0 auto;
+  /* justify-content: center;
+    align-items: center; */
+  text-align: center;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.show-more button {
+  font-size: 25px;
+  background-color: #6888b1;
+  color: #fff;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  border-radius: 10px;
+  border: none;
+  padding: 20px 40px;
+}
+
+.Discount-menu .row{ 
+background-color: #fff;
+display: flex;
+}
+
+.Discount-menu .col {
+  width: 50%;
+}
+
+.Discount-menu .col img{
+  width: 100%;
+}
+
+.discount-content h4{
+  width: 60%;
+  font-weight: 600;
+  padding-top: 30px;
+  /* padding-bottom: 5px; */
+  font-size: 58px;
+  padding-left: 40px;
+}
+
+.discount-content p{
+  width: 80%;
+  /* text-align: center; */
+  /* padding-left: 40px; */
+  font-size: 25px;
+  /* padding-bottom: 40px; */
+}
+
+.Read-more{
+font-size: 23px;
+letter-spacing: 5px;
+text-transform: uppercase;
+color: #ffffff;
+font-weight: 500;
+font-family: "Ubuntu";
+/* background-color: #6888b1; */
+margin: 0 auto;
+padding-left: 90px;
+padding-top: 30px;
+}
+
+.Read-more button {
+  font-size: 23px;
+  background-color:#7287ae;
+  color: #fff;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  border-radius: 37px;
+  border: none;
+  padding: 20px 40px;
+}
+
+.order-section{
+  background-color: #6888b1;
+  /* padding-top: 0px; */
+  padding: 70px 0;
+}
+
+.order-content{
+  text-align: center;
+  font-size: 35px;
+text-transform: uppercase;
+color: #ffffff;
+/* font-weight: 700; */
+font-family: "Ubuntu";
+padding-top: 15px;
+}
+
+.steps {
+  background-color: #6888b1;
+  padding: 50px 0;
+}
+
+.steps .row {
+  display: flex;
+}
+
+.steps .col {
+  width: 33.33%;
+  text-align: center;
+  color: #fff;
+  padding-top: 40px 0;
+}
+
+.steps .col span {
+background-color: #fff;
+color: #6888b1;
+border-radius: 50%;
+font-size: 30px;
+font-weight: bold;
+margin: 150px;
+}
+
+.steps .h1 {
+  font-weight: 500;
+}
+
+.steps p {
+  text-align: center;
+  padding-left: 60px;
+}
+
+.delivery-section{
+  background-image: url(/image/vegetables.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  padding-bottom: 200px;
+}
+
+.text h2 {
+  font-size: 40px;
+  color: #7287ae;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  justify-content: space-around;
+  padding-top: 30px;
+  padding-bottom: 40px;
+}
+
+.text p {
+  width: 70%;
+  font-size: 20px;
+  color: #7287ae;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  padding-bottom: 50px;
+  padding-top: 60px;
+  margin: 0  auto;
+}
+
+.GET-VOUCHER{
+font-size: 23px;
+letter-spacing: 5px;
+text-transform: uppercase;
+color: #ffffff;
+font-weight: 500;
+font-family: "Ubuntu";
+/* background-color: #6888b1; */
+margin: 0 auto;
+padding-left: 90px;
+padding-top: 30px;
+}
+
+.button button{
+  font-size: 23px;
+  background-color:#7287ae;
+  color: #fff;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  border-radius: 37px;
+  border: none;
+  padding: 20px 30px;
+}
+
+.button {
+  text-align: center;
+}
+
+.Waiter-section {
+  background-color: #dceac0;
+}
+
+.Waiter-section h4 {
+  font-size: 40px;
+  line-height: 45px;
+  color: #7287ae;
+  font-weight: 700;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+}
+
+.Waiter-section .icons {
+  text-align: center;
+  padding-top: 40px;
+  font-size: 30px;
+  color: #7287ae;
+  font-family: 'Courier New', Courier, monospace;
+
+}
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+  background: linear-gradient(to right,#3c7e9d,#2e5976);
+  color: white;
+  padding: 40px 20px;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  max-width: 50px;
+}
+
+.footer-section h3 {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.footer-section p {
+  font-size: 14px;
+  line-height: 2.4px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul {
+   list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  font-size: 14px;
+  margin-bottom: 8px;
+}

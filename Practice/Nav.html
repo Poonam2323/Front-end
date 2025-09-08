@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul li{
+            display: inline-block;
+            background-color: lightsalmon;
+            padding: 10px 20px;
+            position: relative;
+        }
+
+        ul li::after {
+            content: "";
+            height: 5px;
+            width: 100%;
+            background: black;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            transition: 0.5s;
+            transform: scale(0);
+        }
+
+        li:hover::after {
+            transform: scale(1);
+        }
+
+        ul li a{
+            text-decoration: none;
+            color: white;
+        }
+        
+    </style>
+    </head>
+    <body>
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Men's wear</a></li>
+            <li><a href="">Women's Wear</a></li>
+            <li><a href="">Short Codes</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+    </body>

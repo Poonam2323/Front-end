@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Interaction Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      width: 100%;
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input, select, textarea, button {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+      width: 100%;
+    }
+    button {
+      background: #007bff;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .message {
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .error { color: red; }
+    .success { color: green; }
+
+    /* Table Styles */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background: #007bff;
+      color: white;
+    }
+    .search-bar {
+      margin-bottom: 10px;
+      display: flex;
+      gap: 10px;
+    }
+    .search-bar input, .search-bar select {
+      flex: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      th, td { font-size: 0.9rem; }
+      .container { padding: 15px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Feedback Form -->
+  <div class="container">
+    <h2>Customer Feedback</h2>
+    <form id="feedbackForm">
+      <div>
+        <label for="name">Attendee Name</label>
+        <input type="text" id="name" placeholder="Enter your name">
+      </div>
+      <div>
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email">
+      </div>
+      <div>
+        <label for="event">Event Attended</label>
+        <select id="event">
+          <option value="">-- Select Event --</option>
+          <option>Webinar</option>
+          <option>Workshop</option>
+          <option>Meetup</option>
+        </select>
+      </div>
+      <div>
+        <label>Rating</label>
+        <select id="rating">
+          <option value="">-- Select Rating --</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      <div>
+        <label for="comments">Comments</label>
+        <textarea id="comments" rows="4" placeholder="Write your feedback..."></textarea>
+      </div>
+      <button type="submit">Submit Feedback</button>
+    </form>
+    <div id="formMessage" class="message"></div>
+  </div>
+
+  <!-- Feedback Viewer -->
+  <div class="container">
+    <h2>Feedback Viewer</h2>
+    <div class="search-bar">
+      <input type="text" id="searchName" placeholder="Search by Name">
+      <select id="searchEvent">
+        <option value="">All Events</option>
+        <option>Webinar</option>
+        <option>Workshop</option>
+        <option>Meetup</option>
+      </select>
+    </div>
+    <div id="feedbackTableContainer"></div>
+  </div>
+
+  <script>
+    // ========== Feedback Form Handler ==========
+    class FeedbackFormHandler {
+      constructor(formId, messageId, viewer) {
+        this.form = document.getElementById(formId);
+        this.message = document.getElementById(messageId);
+        this.viewer = viewer;
+        this.init();
+      }
+      init() {
+        this.form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          if (this.validateForm()) {
+            this.saveToLocalStorage();
+            this.showMessage("Feedback submitted successfully!", "success");
+            this.clearForm();
+            this.viewer.renderTable(); // refresh table
+          }
+        });
+      }
+      validateForm() {
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const event = document.getElementById("event").value;
+        const rating = document.getElementById("rating").value;
+        const comments = document.getElementById("comments").value.trim();
+
+        if (name.length < 3) return this.showMessage("Name must be at least 3 characters.", "error"), false;
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return this.showMessage("Enter a valid email address.", "error"), false;
+        if (!event) return this.showMessage("Please select an event.", "error"), false;
+        if (!rating || rating < 1 || rating > 5) return this.showMessage("Please select a rating between 1 and 5.", "error"), false;
+        if (comments.length < 10) return this.showMessage("Comments must be at least 10 characters.", "error"), false;
+
+        return true;
+      }
+      saveToLocalStorage() {
+        const feedback = {
+          name: document.getElementById("name").value,
+          email: document.getElementById("email").value,
+          event: document.getElementById("event").value,
+          rating: document.getElementById("rating").value,
+          comments: document.getElementById("comments").value,
+          date: new Date().toLocaleString()
+        };
+        let feedbackList = JSON.parse(localStorage.getItem("feedbacks")) || [];
+        feedbackList.push(feedback);
+        localStorage.setItem("feedbacks", JSON.stringify(feedbackList));
+      }
+      clearForm() {
+        this.form.reset();
+      }
+      showMessage(msg, type) {
+        this.message.textContent = msg;
+        this.message.className = `message ${type}`;
+      }
+    }
+
+    // ========== Feedback Viewer ==========
+    class FeedbackViewer {
+      constructor(containerId, searchNameId, searchEventId) {
+        this.container = document.getElementById(containerId);
+        this.searchName = document.getElementById(searchNameId);
+        this.searchEvent = document.getElementById(searchEventId);
+
+        this.searchName.addEventListener("input", () => this.renderTable());
+        this.searchEvent.addEventListener("change", () => this.renderTable());
+
+        this.renderTable();
+      }
+
+      getFeedbacks() {
+        return JSON.parse(localStorage.getItem("feedbacks")) || [];
+      }
+
+      filterFeedbacks(feedbacks) {
+        const nameFilter = this.searchName.value.toLowerCase();
+        const eventFilter = this.searchEvent.value;
+
+        return feedbacks.filter(fb => {
+          const matchesName = fb.name.toLowerCase().includes(nameFilter);
+          const matchesEvent = eventFilter ? fb.event === eventFilter : true;
+          return matchesName && matchesEvent;
+        });
+      }
+
+      renderTable() {
+        const feedbacks = this.filterFeedbacks(this.getFeedbacks());
+
+        if (feedbacks.length === 0) {
+          this.container.innerHTML = `<p style="text-align:center; color:red;">No feedback found</p>`;
+          return;
+        }
+
+        let table = `
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Event</th>
+                <th>Rating</th>
+                <th>Comments</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+        `;
+        feedbacks.forEach(fb => {
+          table += `
+            <tr>
+              <td>${fb.name}</td>
+              <td>${fb.email}</td>
+              <td>${fb.event}</td>
+              <td>${fb.rating}</td>
+              <td>${fb.comments}</td>
+              <td>${fb.date}</td>
+            </tr>
+          `;
+        });
+        table += "</tbody></table>";
+
+        this.container.innerHTML = table;
+      }
+    }
+
+    // Initialize Viewer & Form
+    const viewer = new FeedbackViewer("feedbackTableContainer", "searchName", "searchEvent");
+    new FeedbackFormHandler("feedbackForm", "formMessage", viewer);
+  </script>
+</body>
+</html>
