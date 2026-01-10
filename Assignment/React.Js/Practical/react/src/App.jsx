@@ -14,7 +14,7 @@ import UserList from "./UserList";
 import UserForm from "./UserForm";
 import ValidatedUserForm from "./ValidatedUserForm";
 import FetchData from "./FetchData";
-import DataFetcher from "./DataFetcher";
+
 
 
 
@@ -39,7 +39,7 @@ function App() {
    <UserForm />
    <ValidatedUserForm />
    <FetchData />
-   <DataFetcher />
+ 
   
 
    
